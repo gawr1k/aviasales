@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import './App.scss';
 import React, { useEffect } from 'react';
 import AviasalesTicketFetcher from './api/api';
@@ -36,7 +37,7 @@ function App() {
         <fieldset className="filter">
           <legend className="filter__title">Количество пересадок</legend>
           <label className="filter__checkbox" htmlFor="allStops">
-            <input type="checkbox" name="allStops" value="all" checked />
+            <input type="checkbox" name="allStops" value="all" />
             Все
           </label>
           <label className="filter__checkbox" htmlFor="nonStop">
@@ -57,11 +58,14 @@ function App() {
           </label>
         </fieldset>
         <nav className="content__navigation">
-          <ul className="content__navigation__list">
-            <li><button className="content__navigation__list__btn" type="button">Самый дешевый</button></li>
-            <li><button className="content__navigation__list__btn" type="button">Самый быстрый</button></li>
-            <li><button className="content__navigation__list__btn" type="button">Оптимальный</button></li>
-          </ul>
+          <input type="radio" id="cheap" name="filter" className="content__navigation__radio" />
+          <label htmlFor="cheap" className="content__navigation__label one">Самый дешевый</label>
+
+          <input type="radio" id="fast" name="filter" className="content__navigation__radio" />
+          <label htmlFor="fast" className="content__navigation__label two">Самый быстрый</label>
+
+          <input type="radio" id="optimal" name="filter" className="content__navigation__radio" />
+          <label htmlFor="optimal" className="content__navigation__label three">Оптимальный</label>
         </nav>
       </main>
     </div>

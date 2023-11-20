@@ -1,0 +1,81 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .header{
+        display: flex;
+        justify-content: center;
+        &__logo{
+            width: 60px;
+            height: 60px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+    }
+    .content{
+        margin-left: 103px;
+        margin-right: 103px;
+        display: flex;
+        .filter{
+            display: flex;
+            flex-direction: column;
+            width: 232px;
+            height: 252px;
+        }
+        &__navigation {
+            display: flex;
+            &__radio {
+                display: none; 
+            }
+            .one{
+                border-top-left-radius: 0.5em;
+                border-bottom-left-radius: 0.5em;
+            }
+            .two{
+                border-right: none;
+                border-left: none;
+            }
+            .three{
+                border-top-right-radius: 0.5em;
+                border-bottom-right-radius: 0.5em;
+            }
+
+            &__label {
+                width: 168px;
+                height: 50px;
+                border: 1px solid #DFE5EC;
+                margin: 0;
+                border-radius: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                text-transform: uppercase;
+                transition: background-color 0.3s ease; // Анимация изменения цвета
+              
+                &:hover {
+                  background-color: #2196F3; // Цвет при наведении
+                }
+              
+                &:active {
+                  background-color: #2196F3; // Цвет при нажатии
+                }
+              
+                // Стили для невыбранной кнопки
+                & + .content__navigation__label {
+                  margin-left: 10px; // Расстояние между кнопками
+                }
+              }
+          }
+    }
+}
+
+
+
+  
+  
+
+  .content__navigation__radio:checked + .content__navigation__label {
+    background-color: #2196F3; // Цвет для выбранной кнопки
+    color: white;
+  }
