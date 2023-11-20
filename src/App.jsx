@@ -35,7 +35,7 @@ function App() {
       </header>
       <main className="content">
         <fieldset className="filter">
-          <legend className="filter__title">Количество пересадок</legend>
+          <h3 className="filter__title">Количество пересадок</h3>
           <label className="filter__checkbox" htmlFor="allStops">
             <input type="checkbox" name="allStops" value="all" />
             Все
