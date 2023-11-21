@@ -90,12 +90,18 @@
     }
 
 
+.navigation__container{
+    display: flex;
+    flex-direction: column;
+}
+
     .content{
         margin-left: 103px;
         margin-right: 103px;
         display: flex;
         &__navigation {
             margin-left: 20px;
+            width: 502px;
             display: flex;
             height: 50px;
             &__radio {

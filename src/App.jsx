@@ -2,6 +2,7 @@
 import './App.scss';
 import React, { useEffect } from 'react';
 import AviasalesTicketFetcher from './api/api';
+import Card from './components/Card/Card';
 
 function App() {
   useEffect(() => {
@@ -62,17 +63,21 @@ function App() {
             3 пересадки
           </label>
         </fieldset>
-        <nav className="content__navigation">
-          <input type="radio" id="cheap" name="filter" className="content__navigation__radio" />
-          <label htmlFor="cheap" className="content__navigation__label one">Самый дешевый</label>
+        <div className="navigation__container">
+          <nav className="content__navigation">
+            <input type="radio" id="cheap" name="filter" className="content__navigation__radio" />
+            <label htmlFor="cheap" className="content__navigation__label one">Самый дешевый</label>
 
-          <input type="radio" id="fast" name="filter" className="content__navigation__radio" />
-          <label htmlFor="fast" className="content__navigation__label two">Самый быстрый</label>
+            <input type="radio" id="fast" name="filter" className="content__navigation__radio" />
+            <label htmlFor="fast" className="content__navigation__label two">Самый быстрый</label>
 
-          <input type="radio" id="optimal" name="filter" className="content__navigation__radio" />
-          <label htmlFor="optimal" className="content__navigation__label three">Оптимальный</label>
-        </nav>
-
+            <input type="radio" id="optimal" name="filter" className="content__navigation__radio" />
+            <label htmlFor="optimal" className="content__navigation__label three">Оптимальный</label>
+          </nav>
+          <Card />
+          <Card />
+          <Card />
+        </div>
       </main>
     </div>
   );
