@@ -37,23 +37,28 @@ function App() {
         <fieldset className="filter">
           <h3 className="filter__title">Количество пересадок</h3>
           <label className="filter__checkbox" htmlFor="allStops">
-            <input type="checkbox" name="allStops" value="all" />
+            <input className="filter__checkbox__input" type="checkbox" id="allStops" name="allStops" value="all" />
+            <span className="filter__checkbox__span" />
             Все
           </label>
           <label className="filter__checkbox" htmlFor="nonStop">
-            <input type="checkbox" name="nonStop" value="0" />
+            <input className="filter__checkbox__input" type="checkbox" id="nonStop" name="nonStop" value="0" />
+            <span className="filter__checkbox__span" />
             Без пересадок
           </label>
           <label className="filter__checkbox" htmlFor="oneStop">
-            <input type="checkbox" name="oneStop" value="1" />
+            <input className="filter__checkbox__input" type="checkbox" id="oneStop" name="oneStop" value="1" />
+            <span className="filter__checkbox__span" />
             1 пересадка
           </label>
           <label className="filter__checkbox" htmlFor="twoStops">
-            <input type="checkbox" name="twoStops" value="2" />
+            <input className="filter__checkbox__input" type="checkbox" id="twoStops" name="twoStops" value="2" />
+            <span className="filter__checkbox__span" />
             2 пересадки
           </label>
           <label className="filter__checkbox" htmlFor="threeStops">
-            <input type="checkbox" name="threeStops" value="3" />
+            <input className="filter__checkbox__input" type="checkbox" id="threeStops" name="threeStops" value="3" />
+            <span className="filter__checkbox__span" />
             3 пересадки
           </label>
         </fieldset>
@@ -67,9 +72,9 @@ function App() {
           <input type="radio" id="optimal" name="filter" className="content__navigation__radio" />
           <label htmlFor="optimal" className="content__navigation__label three">Оптимальный</label>
         </nav>
+
       </main>
     </div>
   );
 }
-
 export default App;
