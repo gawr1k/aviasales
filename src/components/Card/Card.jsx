@@ -1,12 +1,13 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import './Card.scss';
 
-export default function Card() {
+export default function Card({ price }) {
   return (
     <div className="content__card">
       <div className="content__card__container">
         <div className="content__card__container__header-card">
-          <p className="content__card__container__header-card__price">13 400p</p>
+          <p className="content__card__container__header-card__price">{price}</p>
           <img className="content__card__container__header-card__airlanes" src="./S7 Logo.png" alt="airlanes-logotype" />
         </div>
         <div className="content__card__container__info">
