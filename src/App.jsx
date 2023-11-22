@@ -49,6 +49,17 @@ function App() {
             <Card
               key={v4()}
               price={ticket.price}
+              img={ticket.carrier}
+              origin={ticket.segments[0].origin}
+              destination={ticket.segments[0].destination}
+              date={ticket.segments[0].date}
+              duration={ticket.segments[0].duration}
+              backorigin={ticket.segments[1].origin}
+              backdestination={ticket.segments[1].destination}
+              backdate={ticket.segments[1].date}
+              backduration={ticket.segments[1].duration}
+              stops={ticket.segments[0].stops}
+              backstops={ticket.segments[1].stops}
             />
           ))}
           {visible < data.length
