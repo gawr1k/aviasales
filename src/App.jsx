@@ -2,40 +2,68 @@
 import { v4 } from 'uuid';
 import './App.scss';
 import React, { useEffect } from 'react';
-import AviasalesTicketFetcher from './api/api';
+import { useSelector, useDispatch } from 'react-redux';
+// import AviasalesTicketFetcher from './api/api';
+import { getdata } from './actions';
 import Card from './components/Card/Card';
 import Navigation from './components/Navigation/Navigation';
 import Header from './components/Header/Header';
 import Filter from './components/Filter/Filter';
 
 function App() {
-  const [data, setData] = React.useState([]);
+  // const [data, setData] = React.useState([]);
   const [visible, setVisible] = React.useState(5);
+  // const arrtickets = useSelector(state => state.tickets.items);
+  const { searchId, tickets } = useSelector((state) => state.data);
+  const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   dispatch(getdata());
+  //   // console.log(data);
+  // }, [dispatch]);
   useEffect(() => {
-    const aviasalesAPI = new AviasalesTicketFetcher();
     const fetchData = async () => {
-      // Получаем searchId
-      const searchId = await aviasalesAPI.getSearcId();
-      if (searchId) {
-        // console.log(`SearchId: ${searchId}`);
-        // Получаем билеты с использованием searchId
-        const tickets = await aviasalesAPI.getTickets();
-        if (tickets) {
-          setData(tickets);
-          // console.log('Tickets:');
-          // tickets.forEach((ticket) => {
-          //   console.log(ticket);
-          // });
-        } else {
-          console.log('Failed to get tickets.');
-        }
-      } else {
-        console.log('Failed to get searchId.');
-      }
+      await dispatch(getdata());
+      console.log(searchId, tickets); // Убедитесь, что searchId и tickets заполнены
     };
+
     fetchData();
-  }, []);
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(getdata());
+  //   console.log(data);
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   if (dispatch) {
+  //     dispatch(getdata());
+  //   }
+  // }, []);
+  // useEffect(() => {
+  //   const aviasalesAPI = new AviasalesTicketFetcher();
+  //   const fetchData = async () => {
+  //     // Получаем searchId
+  //     const searchId = await aviasalesAPI.getSearcId();
+  //     if (searchId) {
+  //       // console.log(`SearchId: ${searchId}`);
+  //       // Получаем билеты с использованием searchId
+  //       const tickets = await aviasalesAPI.getTickets();
+  //       if (tickets) {
+  //         dispatch(getdata(data));
+  //         // console.log('Tickets:');
+  //         // tickets.forEach((ticket) => {
+  //         //   console.log(ticket);
+  //         // });
+  //       } else {
+  //         console.log('Failed to get tickets.');
+  //       }
+  //     } else {
+  //       console.log('Failed to get searchId.');
+  //     }
+  //   };
+  //   fetchData();
+  // }, [dispatch]);
 
   return (
     <div className="container">
@@ -44,7 +72,7 @@ function App() {
         <Filter />
         <div className="navigation__container">
           <Navigation />
-          {data.slice(0, visible).map((ticket) => (
+          {tickets.slice(0, visible).map((ticket) => (
             // console.log(ticket)
             <Card
               key={v4()}
@@ -62,7 +90,7 @@ function App() {
               backstops={ticket.segments[1].stops}
             />
           ))}
-          {visible < data.length
+          {visible < tickets.length
           && <button type="button" onClick={() => setVisible((v) => v + 5)}>Показать ещё</button>}
         </div>
       </main>
