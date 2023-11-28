@@ -1,9 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { v4 } from 'uuid';
 import './App.scss';
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import AviasalesTicketFetcher from './api/api';
 import { getdata } from './actions';
 import Card from './components/Card/Card';
 import Navigation from './components/Navigation/Navigation';
@@ -11,59 +9,14 @@ import Header from './components/Header/Header';
 import Filter from './components/Filter/Filter';
 
 function App() {
-  // const [data, setData] = React.useState([]);
   const [visible, setVisible] = React.useState(5);
-  // const arrtickets = useSelector(state => state.tickets.items);
-  const { searchId, tickets } = useSelector((state) => state.data);
+  const { tickets } = useSelector((state) => state.data);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getdata());
-  //   // console.log(data);
-  // }, [dispatch]);
   useEffect(() => {
-    const fetchData = async () => {
-      await dispatch(getdata());
-      console.log(searchId, tickets); // Убедитесь, что searchId и tickets заполнены
-    };
+    dispatch(getdata())
+  } ,[dispatch]);
 
-    fetchData();
-  }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(getdata());
-  //   console.log(data);
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   if (dispatch) {
-  //     dispatch(getdata());
-  //   }
-  // }, []);
-  // useEffect(() => {
-  //   const aviasalesAPI = new AviasalesTicketFetcher();
-  //   const fetchData = async () => {
-  //     // Получаем searchId
-  //     const searchId = await aviasalesAPI.getSearcId();
-  //     if (searchId) {
-  //       // console.log(`SearchId: ${searchId}`);
-  //       // Получаем билеты с использованием searchId
-  //       const tickets = await aviasalesAPI.getTickets();
-  //       if (tickets) {
-  //         dispatch(getdata(data));
-  //         // console.log('Tickets:');
-  //         // tickets.forEach((ticket) => {
-  //         //   console.log(ticket);
-  //         // });
-  //       } else {
-  //         console.log('Failed to get tickets.');
-  //       }
-  //     } else {
-  //       console.log('Failed to get searchId.');
-  //     }
-  //   };
-  //   fetchData();
-  // }, [dispatch]);
 
   return (
     <div className="container">
@@ -73,7 +26,6 @@ function App() {
         <div className="navigation__container">
           <Navigation />
           {tickets.slice(0, visible).map((ticket) => (
-            // console.log(ticket)
             <Card
               key={v4()}
               price={ticket.price}

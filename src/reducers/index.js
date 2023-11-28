@@ -1,5 +1,4 @@
 /* eslint-disable default-param-last */
-// reducers/index.js
 const initialState = {
   data: {
     searchId: null,
