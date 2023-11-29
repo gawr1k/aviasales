@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-shadow */
 import { v4 } from 'uuid';
 import './App.scss';
 import React, { useEffect } from 'react';
@@ -16,13 +18,13 @@ function App() {
   useEffect(() => {
     dispatch(getdata())
   } ,[dispatch]);
-
+  
 
   return (
     <div className="container">
       <Header />
       <main className="content">
-        <Filter />
+        <Filter/>
         <div className="navigation__container">
           <Navigation />
           {tickets.slice(0, visible).map((ticket) => (
