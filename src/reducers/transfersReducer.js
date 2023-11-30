@@ -1,0 +1,30 @@
+/* eslint-disable default-param-last */
+const initialState = {
+  transfers: [],
+};
+
+export default function transfersReducer(state = initialState, action) {
+  switch(action.type) {
+    
+    case 'SET_TRANSFERS':
+      return {
+        ...state,
+        transfers: action.payload
+      };
+
+    case 'ADD_TRANSFER':
+      return {
+        ...state, 
+        transfers: [...state.transfers, action.payload]
+      };
+    
+    case 'REMOVE_TRANSFER':
+      return {
+        ...state,
+        transfers: state.transfers.filter(t => t !== action.payload)
+      };
+    
+    default:  
+      return state;
+  }
+}

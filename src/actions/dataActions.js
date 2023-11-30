@@ -2,7 +2,7 @@ import AviasalesTicketFetcher from '../api/api';
 
 const aviasalesAPI = new AviasalesTicketFetcher();
 
-export const getdata = () => async (dispatch) => {
+export const fetchData = () => async (dispatch) => {
   try {
     const searchId = await aviasalesAPI.getSearcId();
     if (searchId) {
@@ -25,10 +25,3 @@ export const getdata = () => async (dispatch) => {
     console.error('Failed to fetch data:', error);
   }
 };
-
-export function onSortChange(sort) {
-  return {
-     type: 'SET_SORT',
-     sort
-  }; 
-}

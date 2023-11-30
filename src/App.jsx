@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-shadow */
 import { v4 } from 'uuid';
 import './App.scss';
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getdata } from './actions';
+import { fetchData } from './actions/dataActions';
 import Card from './components/Card/Card';
 import Navigation from './components/Navigation/Navigation';
 import Header from './components/Header/Header';
@@ -16,9 +14,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getdata())
-  } ,[dispatch]);
-  
+    dispatch(fetchData());
+  }, [dispatch]);
 
   return (
     <div className="container">
@@ -27,7 +24,7 @@ function App() {
         <Filter/>
         <div className="navigation__container">
           <Navigation />
-          {tickets.slice(0, visible).map((ticket) => (
+          {tickets && tickets.slice(0, visible).map((ticket) => (
             <Card
               key={v4()}
               price={ticket.price}
@@ -44,7 +41,7 @@ function App() {
               backstops={ticket.segments[1].stops}
             />
           ))}
-          {visible < tickets.length
+          {tickets && visible < tickets.length
           && <button type="button" onClick={() => setVisible((v) => v + 5)}>Показать ещё</button>}
         </div>
       </main>
