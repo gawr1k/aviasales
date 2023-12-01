@@ -21,7 +21,7 @@ const addTransfer = (transfer) => ({
         if(transfers.transfers.includes('all')) {
           dispatch(setTransfers([])) 
         } else {
-          dispatch(setTransfers(['0', '1', '2', '3', 'all']))
+          dispatch(setTransfers([0, 1, 2, 3, 'all']))
         }
       }
     }

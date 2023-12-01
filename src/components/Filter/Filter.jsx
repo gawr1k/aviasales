@@ -8,9 +8,9 @@ export default function Filter() {
   const {transfers } = useSelector(state => state.transfers || []);
   const dispatch = useDispatch();
 
-  // useEffect(()=>{
-  //   console.log(transfers)
-  // },[transfers])
+    React.useEffect(()=>{
+    console.log(transfers)
+  },[transfers])
 
 
   return (
@@ -22,22 +22,22 @@ export default function Filter() {
         Все
       </label>
       <label className="filter__checkbox" htmlFor="nonStop">
-        <input className="filter__checkbox__input" type="checkbox" id="nonStop" name="nonStop" value="0" checked={transfers.includes('0')} onChange={() => dispatch(toggleTransfer('0'))}/>
+        <input className="filter__checkbox__input" type="checkbox" id="nonStop" name="nonStop" value="0" checked={transfers.includes(0)} onChange={() => dispatch(toggleTransfer(0))}/>
         <span className="filter__checkbox__span" />
         Без пересадок
       </label>
       <label className="filter__checkbox" htmlFor="oneStop">
-        <input className="filter__checkbox__input" type="checkbox" id="oneStop" name="oneStop" value="1" checked={transfers.includes('1')} onChange={() => dispatch(toggleTransfer('1'))}/>
+        <input className="filter__checkbox__input" type="checkbox" id="oneStop" name="oneStop" value="1" checked={transfers.includes(1)} onChange={() => dispatch(toggleTransfer(1))}/>
         <span className="filter__checkbox__span" />
         1 пересадка
       </label>
       <label className="filter__checkbox" htmlFor="twoStops">
-        <input className="filter__checkbox__input" type="checkbox" id="twoStops" name="twoStops" value="2" checked={transfers.includes('2')} onChange={() => dispatch(toggleTransfer('2'))}/>
+        <input className="filter__checkbox__input" type="checkbox" id="twoStops" name="twoStops" value="2" checked={transfers.includes(2)} onChange={() => dispatch(toggleTransfer(2))}/>
         <span className="filter__checkbox__span" />
         2 пересадки
       </label>
       <label className="filter__checkbox" htmlFor="threeStops">
-        <input className="filter__checkbox__input" type="checkbox" id="threeStops" name="threeStops" value="3" checked={transfers.includes('3')} onChange={() => dispatch(toggleTransfer('3'))}/>
+        <input className="filter__checkbox__input" type="checkbox" id="threeStops" name="threeStops" value="3" checked={transfers.includes(3)} onChange={() => dispatch(toggleTransfer(3))}/>
         <span className="filter__checkbox__span" />
         3 пересадки
       </label>

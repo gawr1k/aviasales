@@ -1,6 +1,6 @@
 /* eslint-disable default-param-last */
 const initialState = {
-  transfers: [],
+  transfers: [0, 1, 2, 3, 'all'],
 };
 
 export default function transfersReducer(state = initialState, action) {
