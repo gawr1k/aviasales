@@ -8,9 +8,9 @@ export default function Filter() {
   const {transfers } = useSelector(state => state.transfers || []);
   const dispatch = useDispatch();
 
-    React.useEffect(()=>{
-    console.log(transfers)
-  },[transfers])
+  //   React.useEffect(()=>{
+  //   console.log(transfers)
+  // },[transfers])
 
 
   return (

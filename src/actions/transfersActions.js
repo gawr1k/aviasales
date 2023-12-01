@@ -15,27 +15,28 @@ const addTransfer = (transfer) => ({
        payload: transfer  
     })
 
-    function selectAllTransfers() {
-      return (dispatch, getState) => {
-        const { transfers } = getState(); 
-        if(transfers.transfers.includes('all')) {
-          dispatch(setTransfers([])) 
-        } else {
-          dispatch(setTransfers([0, 1, 2, 3, 'all']))
-        }
-      }
+function selectAllTransfers() {
+  return (dispatch, getState) => {
+    const { transfers } = getState(); 
+      if(transfers.transfers.includes('all')) {
+        dispatch(setTransfers([])) 
+      } else {
+      dispatch(setTransfers([0, 1, 2, 3, 'all']))
     }
+}
+}                
+        
     
-    function toggleTransfer(transfer) {
-      return (dispatch, getState) => {
-        const { transfers } = getState();
-        if(transfers.transfers.includes(transfer)) {
-          dispatch(removeTransfer(transfer))
-        } else {
-          dispatch(addTransfer(transfer)) 
-        }
+function toggleTransfer(transfer) {
+  return (dispatch, getState) => {
+    const { transfers } = getState();
+      if(transfers.transfers.includes(transfer)) {
+        dispatch(removeTransfer(transfer))
+      } else {
+      dispatch(addTransfer(transfer)) 
       }
     }
+}
 
 
 export {toggleTransfer, selectAllTransfers}
