@@ -1,6 +1,6 @@
 import { v4 } from 'uuid';
 import './App.scss';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchData } from './actions/dataActions';
 import Card from './components/Card/Card';
@@ -10,14 +10,39 @@ import Filter from './components/Filter/Filter';
 import countTotalStops from './components/Card/countTotalStops/countTotalStops';
 
 function App() {
-  const [visible, setVisible] = React.useState(5);
+  const [visible, setVisible] = useState(5);
   const { tickets } = useSelector((state) => state.data);
   const { transfers } = useSelector(state => state.transfers);
   const dispatch = useDispatch();
+  const selectedOption = useSelector(state => state.selectedOption.selectedOption);
+  const [sortedTickets, setSortedTickets] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(fetchData());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!tickets) return; 
+    const sortedTicketsCopy = [...tickets];
+    
+    if (selectedOption === 'cheap') {
+      sortedTicketsCopy.sort((a, b) => a.price - b.price);
+    } else if (selectedOption === 'fast') {
+      sortedTicketsCopy.sort((a, b) => a.duration - b.duration);
+    } else if (selectedOption === 'optimal') {
+      sortedTicketsCopy.sort((a, b) => {
+        if (a.price !== b.price) {
+          return a.price - b.price;
+        }
+        return a.duration - b.duration;
+      });
+    }
+    setSortedTickets(sortedTicketsCopy);
+  }, [selectedOption, tickets]);
+
+  if (!tickets) {
+    return null; 
+  }
 
   return (
     <div className="container">
@@ -26,8 +51,8 @@ function App() {
         <Filter/>
         <div className="navigation__container">
           <Navigation />
-          {tickets &&
-            tickets
+          {sortedTickets &&
+            sortedTickets
               .filter((ticket) => {
                 const totalStops = countTotalStops(ticket);
                 return transfers.includes(totalStops) || transfers.includes('all');
@@ -51,9 +76,9 @@ function App() {
                   backstops={ticket.segments[1].stops}
                 />
               ))}
-          {tickets && visible < tickets.length && transfers.length > 0 && (
-            <button type="button" onClick={() => setVisible((v) => v + 5)}>
-              Показать ещё
+          {visible < tickets.length && transfers.length > 0 && (
+            <button className='card_btn' type="button" onClick={() => setVisible((v) => v + 5)}>
+              Показать еще 5 билетов!
             </button>
           )}
         </div>
@@ -61,4 +86,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
