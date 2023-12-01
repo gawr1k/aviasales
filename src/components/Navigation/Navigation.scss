@@ -1,25 +1,30 @@
 .container {
-    .content{
+    .content {
         margin-left: 103px;
         margin-right: 103px;
         display: flex;
+
         &__navigation {
             margin-left: 20px;
             width: 502px;
             display: flex;
             height: 50px;
             margin-bottom: 10px;
+
             &__radio {
                 appearance: none;
             }
+
             .one{
                 border-top-left-radius: 0.5em;
                 border-bottom-left-radius: 0.5em;
             }
+
             .two{
                 border-right: none; 
                 border-left: none;
             }
+
             .three{
                 border-top-right-radius: 0.5em;
                 border-bottom-right-radius: 0.5em;
@@ -38,22 +43,17 @@
                 cursor: pointer;
                 text-transform: uppercase;
                 transition: background-color 0.3s ease; // Анимация изменения цвета
-              
+
                 &:hover {
                   background-color: #2196F3; // Цвет при наведении
                   color: white;
                 }
-              
-                &:active {
-                  background-color: #2196F3; // Цвет при нажатии
-                }
 
-              }
-          }
+                &:focus-within {
+                    background-color: #2196F3; // Дополнительный стиль для фокуса и выбранной кнопки
+                    color: white;
+                }
+            }
+        }
     }
 }
-
-.content__navigation__radio:checked + .content__navigation__label {
-    background-color: #2196F3; // Цвет для выбранной кнопки
-    color: white;
-  }
