@@ -1,18 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Navigation.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import toggleSelectedOption from '../../actions/selectedOptionActions';
 
 export default function Navigation() {
   const dispatch = useDispatch();
-  const selectedOption = useSelector(state => state.selectedOption.selectedOption);
+  const selectedOption = useSelector((state) => state.selectedOption.selectedOption);
 
   const handleOptionChange = (option) => {
     dispatch(toggleSelectedOption(option));
-  }
-  useEffect(()=>{
-    console.log(selectedOption)
-  },[selectedOption])
+  };
 
   return (
     <nav className="content__navigation">

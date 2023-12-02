@@ -12,9 +12,9 @@ import countTotalStops from './components/Card/countTotalStops/countTotalStops';
 function App() {
   const [visible, setVisible] = useState(5);
   const { tickets } = useSelector((state) => state.data);
-  const { transfers } = useSelector(state => state.transfers);
+  const { transfers } = useSelector((state) => state.transfers);
   const dispatch = useDispatch();
-  const selectedOption = useSelector(state => state.selectedOption.selectedOption);
+  const selectedOption = useSelector((state) => state.selectedOption.selectedOption);
   const [sortedTickets, setSortedTickets] = useState([]);
 
   useEffect(() => {
@@ -22,9 +22,9 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!tickets) return; 
+    if (!tickets) return;
     const sortedTicketsCopy = [...tickets];
-    
+
     if (selectedOption === 'cheap') {
       sortedTicketsCopy.sort((a, b) => a.price - b.price);
     } else if (selectedOption === 'fast') {
@@ -41,18 +41,18 @@ function App() {
   }, [selectedOption, tickets]);
 
   if (!tickets) {
-    return null; 
+    return null;
   }
 
   return (
     <div className="container">
       <Header />
       <main className="content">
-        <Filter/>
+        <Filter />
         <div className="navigation__container">
           <Navigation />
-          {sortedTickets &&
-            sortedTickets
+          {sortedTickets
+            && sortedTickets
               .filter((ticket) => {
                 const totalStops = countTotalStops(ticket);
                 return transfers.includes(totalStops) || transfers.includes('all');
@@ -60,7 +60,7 @@ function App() {
               .slice(0, visible)
               .map((ticket) => (
                 <Card
-                  countTotalStops={countTotalStops(ticket)} 
+                  countTotalStops={countTotalStops(ticket)}
                   key={v4()}
                   price={ticket.price}
                   img={ticket.carrier}
@@ -77,7 +77,7 @@ function App() {
                 />
               ))}
           {visible < tickets.length && transfers.length > 0 && (
-            <button className='card_btn' type="button" onClick={() => setVisible((v) => v + 5)}>
+            <button className="card_btn" type="button" onClick={() => setVisible((v) => v + 5)}>
               Показать еще 5 билетов!
             </button>
           )}
