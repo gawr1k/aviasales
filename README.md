@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# Aviasales Tickets
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Ссылка на развернутое приложение](https://example.com)
 
-## Available Scripts
+Это проект, который загружает большое количество билетов из API Aviasales и отображает их в удобном пользовательском интерфейсе. В проекте используется searchId, который генерируется при открытии страницы и используется в последующих запросах к серверу.
 
-In the project directory, you can run:
+## API-точки
 
-### `npm start`
+Проект взаимодействует со следующими API-точками:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- https://front-test.dev.aviasales.ru - Основная API-точка Aviasales. 
+- https://aviasales-test-api.kata.academy - Альтернативная API-точка Aviasales.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Функциональность проекта
 
-### `npm test`
+Основная функциональность проекта Aviasales Tickets включает:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- При открытии страницы генерируется searchId, который затем используется в запросах к API.
+- Проект загружает большое количество билетов из API и сохраняет их в хранилище.  
+- По мере получения ответов от сервера, автоматическая загрузка новых данных прекращается.
+- Во время загрузки данных отображается индикатор загрузки, чтобы показать, что процесс выполняется.
+- По мере поступления доступны некоторые данные, которые можно фильтровать по определенным критериям.
+- Варианты фильтрации включают:
+   - Количество пересадок (по умолчанию показываются все билеты).
+   - Самая низкая цена билета.
+   - Самый быстрый маршрут.
+   
+## Примечание
 
-### `npm run build`
+Из-за ограничений доступного исходного кода проект загружает 500 билетов с сервера одним запросом. Это может привести к большему использованию памяти, но такая постановка задачи служит вызовом для эффективной обработки большого объема данных.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Пожалуйста, имейте в виду, что проект основан на предоставленных спецификациях и может не отражать оптимальную реализацию в плане использования памяти или стратегий загрузки данных.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Для получения дополнительной информации и изучения кода обратитесь к файлам проекта.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Примечание:** Этот файл readme предоставляет обзор проекта Aviasales Tickets и его функциональности. Для подробного кода и специфики реализации обратитесь к исходному коду проекта.

@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable import/prefer-default-export */
 import AviasalesTicketFetcher from '../api/api';
 
 const aviasalesAPI = new AviasalesTicketFetcher();

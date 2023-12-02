@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 class AviasalesTicketFetcher {
   constructor() {
     this.baseUrl = 'https://aviasales-test-api.kata.academy';

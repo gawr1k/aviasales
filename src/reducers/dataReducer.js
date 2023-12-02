@@ -11,10 +11,10 @@ const dataReducer = (state = initialState, action) => {
     case 'GET_DATA_SUCCESS':
       // console.log('Before', state);
       return {
-        searchId: action.payload.searchId, 
-        tickets: action.payload.tickets    
-      }
-      
+        searchId: action.payload.searchId,
+        tickets: action.payload.tickets,
+      };
+
     default:
       // console.log('After', state);
       return state;
