@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "craco build",
+    "build": "react-scripts build",
     "test": "craco test",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
@@ -43,7 +43,6 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^7.1.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.55.0",
     "eslint-config-airbnb": "^19.0.4",
