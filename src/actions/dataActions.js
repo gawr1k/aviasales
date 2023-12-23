@@ -4,7 +4,7 @@ const aviasalesAPI = new AviasalesTicketFetcher()
 
 const fetchData = () => async (dispatch) => {
   try {
-    const searchId = await aviasalesAPI.getSearcId()
+    const searchId = await aviasalesAPI.getSearchId()
     if (searchId) {
       const tickets = await aviasalesAPI.getTickets(searchId)
       if (tickets) {
