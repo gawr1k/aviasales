@@ -7,7 +7,7 @@ import selectedOptionReducer from './reducers/selectedOptionReducer'
 
 const store = configureStore({
   reducer: {
-    data: dataReducer,
+    tickets: dataReducer,
     transfers: transfersReducer,
     selectedOption: selectedOptionReducer,
   },

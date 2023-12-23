@@ -12,7 +12,7 @@ import countTotalStops from './components/Card/countTotalStops/countTotalStops'
 
 function App() {
   const [visible, setVisible] = useState(5)
-  const { tickets } = useSelector((state) => state.data)
+  const { tickets } = useSelector((state) => state.tickets)
   const { transfers } = useSelector((state) => state.transfers)
   const dispatch = useDispatch()
   const selectedOption = useSelector(
@@ -22,11 +22,12 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchData())
-  }, [dispatch])
+  }, [])
 
   useEffect(() => {
     if (!tickets) return
     const sortedTicketsCopy = [...tickets]
+    console.log(tickets)
 
     if (selectedOption === 'cheap') {
       sortedTicketsCopy.sort((a, b) => a.price - b.price)

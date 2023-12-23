@@ -25,6 +25,7 @@
     "rules": {
       "react/jsx-no-constructed-context-values": "off",
       "indent": "off",
+      "no-await-in-loop": "off",
       "operator-linebreak": "off",
       "comma-dangle": "off",
       "prettier/prettier": "error",

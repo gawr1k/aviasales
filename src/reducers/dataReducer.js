@@ -1,16 +1,13 @@
 const initialState = {
-  data: {
-    searchId: [],
-    tickets: [],
-  },
+  tickets: [],
 }
 
 const dataReducer = (state = initialState, action = undefined) => {
   switch (action.type) {
     case 'GET_DATA_SUCCESS':
       return {
-        searchId: action.payload.searchId,
-        tickets: action.payload.tickets,
+        ...state,
+        tickets: [...state.tickets, ...action.payload.allTickets],
       }
 
     default:

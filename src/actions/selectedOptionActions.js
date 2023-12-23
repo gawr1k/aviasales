@@ -1,10 +1,3 @@
-// function setSelectedOption(selectedOption) {
-//   return {
-//     type: 'SET_SELECTED_OPTION',
-//     payload: selectedOption,
-//   }
-// }
-
 const removeSelectedOption = (selectedOption) => ({
   type: 'REMOVE_SELECTED_OPTION',
   payload: selectedOption,
