@@ -1,41 +1,35 @@
-@import url("./style/fonts.css");
-
+@import url('./style/fonts.css');
 
 .container {
-    justify-content: center;
-    background: #F3F7FA;
-    height: 200vh;
+  justify-content: center;
+  background: #f3f7fa;
+  height: 200vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .navigation__container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    
-
-.navigation__container{
-    display: flex;
-    flex-direction: column;
-    }
+  }
 }
 
-
-.card_btn{
-    width: 502px;
-    height: 50px;
-    flex-shrink: 0;
-    background: #2196F3;
-    color: var(--primary-colors-white, #FFF);
-    text-align: center;
-    font-family: Open Sans;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 20px; /* 166.667% */
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    border-radius: 5px;
-    border: none;
-    margin: 0 auto;
+.card_btn {
+  width: 502px;
+  height: 50px;
+  flex-shrink: 0;
+  background: #2196f3;
+  color: var(--primary-colors-white, #fff);
+  text-align: center;
+  font-family: Open Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 166.667% */
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border: none;
+  margin: 0 auto;
 }
-
-
-  

@@ -1,15 +1,18 @@
-import React from 'react';
-import './Navigation.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import toggleSelectedOption from '../../actions/selectedOptionActions';
+import React from 'react'
+import './Navigation.scss'
+import { useDispatch, useSelector } from 'react-redux'
+
+import toggleSelectedOption from '../../actions/selectedOptionActions'
 
 export default function Navigation() {
-  const dispatch = useDispatch();
-  const selectedOption = useSelector((state) => state.selectedOption.selectedOption);
+  const dispatch = useDispatch()
+  const selectedOption = useSelector(
+    (state) => state.selectedOption.selectedOption
+  )
 
   const handleOptionChange = (option) => {
-    dispatch(toggleSelectedOption(option));
-  };
+    dispatch(toggleSelectedOption(option))
+  }
 
   return (
     <nav className="content__navigation">
@@ -49,5 +52,5 @@ export default function Navigation() {
         Оптимальный
       </label>
     </nav>
-  );
+  )
 }
