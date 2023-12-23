@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 class AviasalesTicketFetcher {
   constructor() {
     this.baseUrl = 'https://aviasales-test-api.kata.academy'
@@ -6,33 +5,19 @@ class AviasalesTicketFetcher {
   }
 
   async getSearcId() {
-    try {
-      const response = await fetch(`${this.baseUrl}/search`)
-      const data = await response.json()
-      this.searchId = data.searchId
-      return this.searchId
-    } catch (error) {
-      console.log('Failed to get searchId:', error)
-      return null
-    }
+    const url = new URL('/search', this.baseUrl)
+    const response = await fetch(url.toString())
+    const data = await response.json()
+    this.searchId = data.searchId
+    return this.searchId
   }
 
   async getTickets() {
-    if (!this.searchId) {
-      console.error('SearchId is not available. Please call getSearchId first.')
-      return null
-    }
-
-    try {
-      const response = await fetch(
-        `${this.baseUrl}/tickets?searchId=${this.searchId}`
-      )
-      const data = await response.json() // Add 'await' here
-      return data.tickets
-    } catch (error) {
-      console.error('Failed to get tickets:', error)
-      return null
-    }
+    const url = new URL('/tickets', this.baseUrl)
+    url.searchParams.set('searchId', this.searchId)
+    const response = await fetch(url.toString())
+    const data = await response.json()
+    return data.tickets
   }
 }
 
