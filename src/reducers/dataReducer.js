@@ -1,5 +1,6 @@
 const initialState = {
   tickets: [],
+  error: null,
 }
 
 const dataReducer = (state = initialState, action = undefined) => {
@@ -8,6 +9,18 @@ const dataReducer = (state = initialState, action = undefined) => {
       return {
         ...state,
         tickets: [...state.tickets, ...action.payload.allTickets],
+      }
+
+    case 'GET_DATA_FAILURE':
+      return {
+        ...state,
+        error: action.payload.error,
+      }
+
+    case 'RESET_ERROR':
+      return {
+        ...state,
+        error: null, // Сбрасываем ошибку при вызове действия resetError
       }
 
     default:

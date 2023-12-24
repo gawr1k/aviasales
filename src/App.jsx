@@ -1,9 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { v4 } from 'uuid'
 import './App.scss'
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Alert } from 'antd'
 
-import fetchData from './actions/dataActions'
+import fetchData, { resetError } from './actions/dataActions'
 import Card from './components/Card/Card'
 import Navigation from './components/Navigation/Navigation'
 import Header from './components/Header/Header'
@@ -12,7 +14,7 @@ import countTotalStops from './components/Card/countTotalStops/countTotalStops'
 
 function App() {
   const [visible, setVisible] = useState(5)
-  const { tickets } = useSelector((state) => state.tickets)
+  const { tickets, error } = useSelector((state) => state.tickets)
   const { transfers } = useSelector((state) => state.transfers)
   const dispatch = useDispatch()
   const selectedOption = useSelector(
@@ -27,7 +29,6 @@ function App() {
   useEffect(() => {
     if (!tickets) return
     const sortedTicketsCopy = [...tickets]
-    console.log(tickets)
 
     if (selectedOption === 'cheap') {
       sortedTicketsCopy.sort((a, b) => a.price - b.price)
@@ -44,12 +45,20 @@ function App() {
     setSortedTickets(sortedTicketsCopy)
   }, [selectedOption, tickets])
 
-  if (!tickets) {
-    return null
+  const handleAlertClose = () => {
+    dispatch(resetError())
   }
 
   return (
     <div className="container">
+      {error && (
+        <Alert
+          message={`Error: ${error.message}`}
+          type="error"
+          closable
+          onClose={handleAlertClose}
+        />
+      )}
       <Header />
       <main className="content">
         <Filter />
