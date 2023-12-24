@@ -1,6 +1,7 @@
 const initialState = {
   tickets: [],
   error: null,
+  loading: true,
 }
 
 const dataReducer = (state = initialState, action = undefined) => {
@@ -20,7 +21,7 @@ const dataReducer = (state = initialState, action = undefined) => {
     case 'RESET_ERROR':
       return {
         ...state,
-        error: null, // Сбрасываем ошибку при вызове действия resetError
+        error: null,
       }
 
     default:

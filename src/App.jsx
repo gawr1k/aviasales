@@ -1,5 +1,4 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { v4 } from 'uuid'
 import './App.scss'
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -76,7 +75,7 @@ function App() {
               .map((ticket) => (
                 <Card
                   countTotalStops={countTotalStops(ticket)}
-                  key={v4()}
+                  key={`${ticket.segments[0].origin}-${ticket.segments[0].destination}-${ticket.segments[0].date}`}
                   price={ticket.price}
                   img={ticket.carrier}
                   origin={ticket.segments[0].origin}
