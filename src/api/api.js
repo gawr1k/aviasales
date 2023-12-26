@@ -5,11 +5,11 @@ class AviasalesTicketFetcher {
 
   async getSearchId() {
     const url = new URL('/search', this.baseUrl)
-    const response = await fetch(url)
-    if (!response.ok) {
-      throw new Error(`getSearchId failed with status: ${response.status}`)
+    const res = await fetch(url)
+    if (!res.ok) {
+      throw new Error(`getSearchId no fetch${res.status}`)
     }
-    const data = await response.json()
+    const data = await res.json()
     this.searchId = data.searchId
     return this.searchId
   }
@@ -17,13 +17,12 @@ class AviasalesTicketFetcher {
   async getTickets(searchId) {
     const url = new URL('/tickets', this.baseUrl)
     url.searchParams.set('searchId', searchId)
-    const response = await fetch(url.href)
-    if (!response.ok) {
-      throw new Error(`getTickets failed with status: ${response.status}`)
+    const res = await fetch(url)
+    if (!res.ok) {
+      throw new Error(`getTickets no fetch${res.status}`)
     }
-    const data = await response.json()
+    const data = await res.json()
     return data
   }
 }
-
 export default AviasalesTicketFetcher

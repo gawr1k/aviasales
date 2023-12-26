@@ -1,5 +1,5 @@
 const initialState = {
-  transfers: [0, 1, 2, 3, 'all'],
+  transfers: [],
 }
 
 export default function transfersReducer(

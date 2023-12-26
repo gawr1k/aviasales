@@ -1,3 +1,5 @@
+/* eslint-disable import/named */
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import './Filter.scss'
 import { useSelector, useDispatch } from 'react-redux'
@@ -5,11 +7,21 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   toggleTransfer,
   selectAllTransfers,
+  setTransfers,
 } from '../../actions/transfersActions'
 
 export default function Filter() {
-  const { transfers } = useSelector((state) => state.transfers || [])
+  const { transfers } = useSelector((state) => state.transfers)
   const dispatch = useDispatch()
+
+  React.useEffect(() => {
+    if (transfers.length >= 4 && !transfers.includes('all')) {
+      dispatch(setTransfers([0, 1, 2, 3, 'all']))
+    }
+    if (transfers.length === 4 && transfers.includes('all')) {
+      dispatch(setTransfers(transfers.filter((item) => item !== 'all')))
+    }
+  }, [transfers, dispatch])
 
   return (
     <fieldset className="filter">

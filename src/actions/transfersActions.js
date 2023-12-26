@@ -37,4 +37,4 @@ function toggleTransfer(transfer) {
   }
 }
 
-export { toggleTransfer, selectAllTransfers }
+export { toggleTransfer, selectAllTransfers, setTransfers }

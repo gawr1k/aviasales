@@ -1,6 +1,7 @@
 import AviasalesTicketFetcher from '../api/api'
+import notificationService from '../components/Allert/notificationService'
 
-const aviasalesAPI = new AviasalesTicketFetcher()
+const api = new AviasalesTicketFetcher()
 
 const getDataSuccess = (allTickets) => ({
   type: 'GET_DATA_SUCCESS',
@@ -9,39 +10,33 @@ const getDataSuccess = (allTickets) => ({
   },
 })
 
-const getDataFailure = (error) => ({
-  type: 'GET_DATA_FAILURE',
-  payload: {
-    error,
-  },
-})
-
-export const resetError = () => ({
-  type: 'RESET_ERROR',
+export const resetLoading = () => ({
+  type: 'RESET_LOADING',
 })
 
 const fetchData = () => async (dispatch) => {
   try {
-    const searchId = await aviasalesAPI.getSearchId()
+    const searchId = await api.getSearchId()
 
     if (!searchId) {
-      dispatch(getDataFailure('Failed to get searchId. No searchId returned.'))
+      notificationService.showErrorMessage('Server error')
       return
     }
 
     let tickets
     do {
       try {
-        tickets = await aviasalesAPI.getTickets(searchId)
+        tickets = await api.getTickets(searchId)
         if (tickets) {
           dispatch(getDataSuccess(tickets.tickets))
         }
       } catch (error) {
-        dispatch(getDataFailure(error))
+        notificationService.showErrorMessage(`${error.message}`)
       }
     } while (!tickets.stop)
+    dispatch(resetLoading(false))
   } catch (error) {
-    dispatch(getDataFailure(error))
+    notificationService.showErrorMessage(`${error.message}`)
   }
 }
 

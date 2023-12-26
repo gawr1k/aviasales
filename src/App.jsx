@@ -2,9 +2,9 @@
 import './App.scss'
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Alert } from 'antd'
+import { Spin } from 'antd'
 
-import fetchData, { resetError } from './actions/dataActions'
+import fetchData from './actions/dataActions'
 import Card from './components/Card/Card'
 import Navigation from './components/Navigation/Navigation'
 import Header from './components/Header/Header'
@@ -13,7 +13,7 @@ import countTotalStops from './components/Card/countTotalStops/countTotalStops'
 
 function App() {
   const [visible, setVisible] = useState(5)
-  const { tickets, error } = useSelector((state) => state.tickets)
+  const { tickets, loading } = useSelector((state) => state.tickets)
   const { transfers } = useSelector((state) => state.transfers)
   const dispatch = useDispatch()
   const selectedOption = useSelector(
@@ -44,25 +44,18 @@ function App() {
     setSortedTickets(sortedTicketsCopy)
   }, [selectedOption, tickets])
 
-  const handleAlertClose = () => {
-    dispatch(resetError())
-  }
-
   return (
     <div className="container">
-      {error && (
-        <Alert
-          message={`Error: ${error.message}`}
-          type="error"
-          closable
-          onClose={handleAlertClose}
-        />
-      )}
       <Header />
       <main className="content">
         <Filter />
         <div className="navigation__container">
           <Navigation />
+          {loading && (
+            <Spin tip="Loading tickets" size="large">
+              <div className="spinner" />
+            </Spin>
+          )}
           {sortedTickets &&
             sortedTickets
               .filter((ticket) => {
