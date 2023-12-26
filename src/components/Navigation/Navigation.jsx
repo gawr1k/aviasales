@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './Navigation.scss'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -14,11 +14,6 @@ export default function Navigation() {
     dispatch(toggleSelectedOption(option))
   }
 
-  useEffect(() => {
-    console.log(selectedOption)
-  }, [selectedOption, dispatch])
-
-  // const checked = (selectedOption) => {}
   return (
     <nav className="content__navigation">
       <label

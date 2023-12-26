@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import './App.scss'
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
