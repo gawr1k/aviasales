@@ -3,11 +3,11 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Spin } from 'antd'
 
-import fetchData from './actions/dataActions'
-import Navigation from './components/Navigation/Navigation'
-import TicketsList from './components/TicketsList/TicketsList'
-import Header from './components/Header/Header'
-import Filter from './components/Filter/Filter'
+import fetchData from '../../actions/dataActions'
+import Navigation from '../Navigation/Navigation'
+import TicketsList from '../TicketsList/TicketsList'
+import Header from '../Header/Header'
+import Filter from '../Filter/Filter'
 
 function App() {
   const { loading } = useSelector((state) => state.tickets)

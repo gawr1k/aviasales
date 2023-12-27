@@ -1,0 +1,21 @@
+@import url('../../style/fonts.scss');
+
+.container {
+  justify-content: center;
+  background: #f3f7fa;
+  height: 200vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .navigation__container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.spinner {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

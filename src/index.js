@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './style/index.css'
+import './style/index.scss'
 import { Provider } from 'react-redux'
 
-import App from './App'
+import App from './components/App/App'
 import store from './store'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
