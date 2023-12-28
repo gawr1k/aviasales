@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
 import './TicketsList.scss'
@@ -13,29 +13,31 @@ function TicketsList() {
   const selectedOption = useSelector(
     (state) => state.selectedOption.selectedOption
   )
+  const sortedTickets = useMemo(
+    () => ticketSorter(tickets, selectedOption, transfers),
+    [tickets, selectedOption, transfers]
+  )
 
   return (
     <>
-      {ticketSorter(tickets, selectedOption, transfers)
-        .slice(0, visible)
-        .map((ticket) => (
-          <Card
-            countTotalStops={countTotalStops(ticket)}
-            key={`${ticket.segments[0].origin}-${ticket.segments[0].destination}-${ticket.segments[0].date}`}
-            price={ticket.price}
-            img={ticket.carrier}
-            origin={ticket.segments[0].origin}
-            destination={ticket.segments[0].destination}
-            date={ticket.segments[0].date}
-            duration={ticket.segments[0].duration}
-            backorigin={ticket.segments[1].origin}
-            backdestination={ticket.segments[1].destination}
-            backdate={ticket.segments[1].date}
-            backduration={ticket.segments[1].duration}
-            stops={ticket.segments[0].stops}
-            backstops={ticket.segments[1].stops}
-          />
-        ))}
+      {sortedTickets.slice(0, visible).map((ticket) => (
+        <Card
+          countTotalStops={countTotalStops(ticket)}
+          key={`${ticket.segments[0].origin}-${ticket.segments[0].destination}-${ticket.segments[0].date}`}
+          price={ticket.price}
+          img={ticket.carrier}
+          origin={ticket.segments[0].origin}
+          destination={ticket.segments[0].destination}
+          date={ticket.segments[0].date}
+          duration={ticket.segments[0].duration}
+          backorigin={ticket.segments[1].origin}
+          backdestination={ticket.segments[1].destination}
+          backdate={ticket.segments[1].date}
+          backduration={ticket.segments[1].duration}
+          stops={ticket.segments[0].stops}
+          backstops={ticket.segments[1].stops}
+        />
+      ))}
       {visible < tickets.length && transfers.length > 0 && (
         <button
           className="card_btn"
