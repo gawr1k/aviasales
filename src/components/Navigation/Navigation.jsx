@@ -1,8 +1,9 @@
 import React from 'react'
-import './Navigation.scss'
 import { useDispatch, useSelector } from 'react-redux'
 
 import toggleSelectedOption from '../../actions/selectedOptionActions'
+
+import style from './Navigation.module.scss'
 
 export default function Navigation() {
   const dispatch = useDispatch()
@@ -15,20 +16,20 @@ export default function Navigation() {
   }
 
   return (
-    <nav className="content__navigation">
+    <nav className={style.content__navigation}>
       <label
         htmlFor="cheap"
         className={
           selectedOption.includes('cheap')
-            ? 'checked content__navigation__label one'
-            : 'content__navigation__label one'
+            ? `${style.checked} ${style.content__navigation__label} ${style.one}`
+            : `${style.content__navigation__label} ${style.one}`
         }
       >
         <input
           type="radio"
           id="cheap"
           name="sorting"
-          className="content__navigation__radio"
+          className={style.content__navigation__radio}
           onChange={() => handleOptionChange('cheap')}
         />
         Самый дешевый
@@ -38,15 +39,15 @@ export default function Navigation() {
         htmlFor="fast"
         className={
           selectedOption.includes('fast')
-            ? 'checked content__navigation__label two'
-            : 'content__navigation__label two'
+            ? `${style.checked} ${style.content__navigation__label} ${style.two}`
+            : `${style.content__navigation__label} ${style.two}`
         }
       >
         <input
           type="radio"
           id="fast"
           name="sorting"
-          className="content__navigation__radio"
+          className={style.content__navigation__radio}
           onChange={() => handleOptionChange('fast')}
         />
         Самый быстрый
@@ -56,15 +57,15 @@ export default function Navigation() {
         htmlFor="optimal"
         className={
           selectedOption.includes('optimal')
-            ? 'checked content__navigation__label three'
-            : 'content__navigation__label three'
+            ? `${style.checked} ${style.content__navigation__label} {style.three}`
+            : `${style.content__navigation__label} ${style.three}`
         }
       >
         <input
           type="radio"
           id="optimal"
           name="sorting"
-          className="content__navigation__radio"
+          className={style.content__navigation__radio}
           onChange={() => handleOptionChange('optimal')}
         />
         Оптимальный

@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
-import './TicketsList.scss'
 import ticketSorter from '../../utils/ticketSorter'
 import Card from '../Card/Card'
 import countTotalStops from '../Card/countTotalStops/countTotalStops'
+
+import style from './TicketsList.module.scss'
 
 function TicketsList() {
   const [visible, setVisible] = useState(5)
@@ -40,7 +41,7 @@ function TicketsList() {
       ))}
       {visible < tickets.length && transfers.length > 0 && (
         <button
-          className="card_btn"
+          className={style.card_btn}
           type="button"
           onClick={() => setVisible((v) => v + 5)}
         >

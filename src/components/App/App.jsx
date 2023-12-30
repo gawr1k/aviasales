@@ -1,4 +1,3 @@
-import './App.scss'
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Spin } from 'antd'
@@ -9,6 +8,8 @@ import TicketsList from '../TicketsList/TicketsList'
 import Header from '../Header/Header'
 import Filter from '../Filter/Filter'
 
+import style from './App.module.scss'
+
 function App() {
   const { loading } = useSelector((state) => state.tickets)
   const dispatch = useDispatch()
@@ -18,15 +19,15 @@ function App() {
   }, [])
 
   return (
-    <div className="container">
+    <div className={style.container}>
       <Header />
-      <main className="content">
+      <main className={style.content}>
         <Filter />
-        <div className="navigation__container">
+        <div className={style.navigation__container}>
           <Navigation />
           {loading && (
             <Spin tip="Loading tickets" size="large">
-              <div className="spinner" />
+              <div className={style.spinner} />
             </Spin>
           )}
           <TicketsList />

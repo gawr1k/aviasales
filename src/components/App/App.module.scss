@@ -1,5 +1,3 @@
-@import url('../../style/fonts.scss');
-
 .container {
   justify-content: center;
   background: #f3f7fa;
@@ -8,6 +6,11 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  .content {
+    margin-left: 103px;
+    margin-right: 103px;
+    display: flex;
+  }
 
   .navigation__container {
     display: flex;

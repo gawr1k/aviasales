@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import './Filter.scss'
 import { useSelector, useDispatch } from 'react-redux'
 
 import {
@@ -7,6 +6,8 @@ import {
   selectAllTransfers,
   setTransfers,
 } from '../../actions/transfersActions'
+
+import style from './Filter.module.scss'
 
 export default function Filter() {
   const { transfers } = useSelector((state) => state.transfers)
@@ -22,11 +23,11 @@ export default function Filter() {
   }, [transfers, dispatch])
 
   return (
-    <fieldset className="filter">
-      <h3 className="filter__title">Количество пересадок</h3>
-      <label className="filter__checkbox" htmlFor="allStops">
+    <fieldset className={style.filter}>
+      <h3 className={style.filter__title}>Количество пересадок</h3>
+      <label className={style.filter__checkbox} htmlFor="allStops">
         <input
-          className="filter__checkbox__input"
+          className={style.filter__checkbox__input}
           type="checkbox"
           id="allStops"
           name="allStops"
@@ -34,12 +35,12 @@ export default function Filter() {
           checked={transfers.includes('all')}
           onChange={() => dispatch(selectAllTransfers())}
         />
-        <span className="filter__checkbox__span" />
+        <span className={style.filter__checkbox__span} />
         Все
       </label>
-      <label className="filter__checkbox" htmlFor="nonStop">
+      <label className={style.filter__checkbox} htmlFor="nonStop">
         <input
-          className="filter__checkbox__input"
+          className={style.filter__checkbox__input}
           type="checkbox"
           id="nonStop"
           name="nonStop"
@@ -47,12 +48,12 @@ export default function Filter() {
           checked={transfers.includes(0)}
           onChange={() => dispatch(toggleTransfer(0))}
         />
-        <span className="filter__checkbox__span" />
+        <span className={style.filter__checkbox__span} />
         Без пересадок
       </label>
-      <label className="filter__checkbox" htmlFor="oneStop">
+      <label className={style.filter__checkbox} htmlFor="oneStop">
         <input
-          className="filter__checkbox__input"
+          className={style.filter__checkbox__input}
           type="checkbox"
           id="oneStop"
           name="oneStop"
@@ -60,11 +61,11 @@ export default function Filter() {
           checked={transfers.includes(1)}
           onChange={() => dispatch(toggleTransfer(1))}
         />
-        <span className="filter__checkbox__span" />1 пересадка
+        <span className={style.filter__checkbox__span} />1 пересадка
       </label>
-      <label className="filter__checkbox" htmlFor="twoStops">
+      <label className={style.filter__checkbox} htmlFor="twoStops">
         <input
-          className="filter__checkbox__input"
+          className={style.filter__checkbox__input}
           type="checkbox"
           id="twoStops"
           name="twoStops"
@@ -72,11 +73,11 @@ export default function Filter() {
           checked={transfers.includes(2)}
           onChange={() => dispatch(toggleTransfer(2))}
         />
-        <span className="filter__checkbox__span" />2 пересадки
+        <span className={style.filter__checkbox__span} />2 пересадки
       </label>
-      <label className="filter__checkbox" htmlFor="threeStops">
+      <label className={style.filter__checkbox} htmlFor="threeStops">
         <input
-          className="filter__checkbox__input"
+          className={style.filter__checkbox__input}
           type="checkbox"
           id="threeStops"
           name="threeStops"
@@ -84,7 +85,7 @@ export default function Filter() {
           checked={transfers.includes(3)}
           onChange={() => dispatch(toggleTransfer(3))}
         />
-        <span className="filter__checkbox__span" />3 пересадки
+        <span className={style.filter__checkbox__span} />3 пересадки
       </label>
     </fieldset>
   )

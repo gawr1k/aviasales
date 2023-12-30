@@ -1,12 +1,13 @@
 import React from 'react'
 
-import './Header.scss'
 import Logo from '../../asssets/Logo.png'
+
+import style from './Header.module.scss'
 
 export default function Header() {
   return (
-    <header className="header">
-      <img className="header__logo" src={Logo} alt="Logo-aviasales" />
+    <header className={style.header}>
+      <img className={style.header__logo} src={Logo} alt="Logo-aviasales" />
     </header>
   )
 }
