@@ -15,29 +15,23 @@ export const resetLoading = () => ({
 })
 
 const fetchData = () => async (dispatch) => {
-  try {
-    const searchId = await api.getSearchId()
-
-    if (!searchId) {
-      notificationService.showErrorMessage('Server error')
-      return
-    }
-
-    let tickets
-    do {
-      try {
-        tickets = await api.getTickets(searchId)
-        if (tickets) {
-          dispatch(getDataSuccess(tickets.tickets))
-        }
-      } catch (error) {
-        notificationService.showErrorMessage(`${error.message}`)
-      }
-    } while (!tickets.stop)
-    dispatch(resetLoading(false))
-  } catch (error) {
-    notificationService.showErrorMessage(`${error.message}`)
+  const searchId = await api.getSearchId()
+  if (!searchId) {
+    notificationService.showErrorMessage('Server error')
+    return
   }
+  let tickets
+  do {
+    try {
+      tickets = await api.getTickets(searchId)
+      if (tickets !== undefined) {
+        dispatch(getDataSuccess(tickets.tickets))
+      }
+    } catch (error) {
+      notificationService.showErrorMessage(`${error.message}`)
+    }
+  } while (tickets === undefined || (tickets && !tickets.stop))
+  dispatch(resetLoading(false))
 }
 
 export default fetchData
