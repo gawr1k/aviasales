@@ -10,8 +10,13 @@ const getDataSuccess = (allTickets) => ({
   },
 })
 
-export const resetLoading = () => ({
+const resetLoading = () => ({
   type: 'RESET_LOADING',
+})
+
+const setErrorMessage = (errorMessage) => ({
+  type: 'SET_ERROR_MESSAGE',
+  payload: errorMessage,
 })
 
 const fetchData = () => async (dispatch) => {
@@ -20,17 +25,26 @@ const fetchData = () => async (dispatch) => {
     notificationService.showErrorMessage('Server error')
     return
   }
-  let tickets
+  let tickets = []
   do {
     try {
       tickets = await api.getTickets(searchId)
-      if (tickets !== undefined) {
-        dispatch(getDataSuccess(tickets.tickets))
+      if (tickets === undefined) {
+        notificationService.showErrorMessage('Получен пустой ответ от сервера')
+        dispatch(setErrorMessage('response. status : 200 data = undefined '))
+        break
       }
+      dispatch(getDataSuccess(tickets.tickets))
     } catch (error) {
-      notificationService.showErrorMessage(`${error.message}`)
+      const statusCode = error.message.match(/\b(\d{3})\b/)[0]
+      if (statusCode >= 500) {
+        notificationService.showErrorMessage(`${error.message}`)
+      } else {
+        dispatch(setErrorMessage(`${error.message}`))
+        break
+      }
     }
-  } while (tickets === undefined || (tickets && !tickets.stop))
+  } while (!tickets.stop)
   dispatch(resetLoading(false))
 }
 

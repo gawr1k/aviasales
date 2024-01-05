@@ -7,7 +7,7 @@ class AviasalesTicketFetcher {
     const url = new URL('/search', this.baseUrl)
     const res = await fetch(url)
     if (!res.ok) {
-      throw new Error(`getSearchId no fetch${res.status}`)
+      throw new Error(`getSearchId no fetch ${res.status}`)
     }
     const data = await res.json()
     this.searchId = data.searchId
@@ -19,9 +19,10 @@ class AviasalesTicketFetcher {
     url.searchParams.set('searchId', searchId)
     const res = await fetch(url)
     if (!res.ok) {
-      throw new Error(`getTickets no fetch${res.status}`)
+      throw new Error(`getTickets no fetch ${res.status}`)
     }
     const data = await res.json()
+
     return data
   }
 }
