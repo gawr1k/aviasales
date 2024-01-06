@@ -22,71 +22,40 @@ export default function Filter() {
     }
   }, [transfers, dispatch])
 
+  const handleCheckboxChange = (id) => {
+    if (id === 'all') {
+      dispatch(selectAllTransfers())
+    } else {
+      dispatch(toggleTransfer(id))
+    }
+  }
+
+  const options = [
+    { id: 'all', label: 'Все', class: 'allStops' },
+    { id: 0, label: 'Без пересадок', class: 'nonStop' },
+    { id: 1, label: '1 пересадка', class: 'oneStop' },
+    { id: 2, label: '2 пересадки', class: 'twoStops' },
+    { id: 3, label: '3 пересадки', class: 'threeStops' },
+  ]
+
   return (
     <fieldset className={style.filter}>
       <h3 className={style.filter__title}>Количество пересадок</h3>
-      <label className={style.filter__checkbox} htmlFor="allStops">
-        <input
-          className={style.filter__checkbox__input}
-          type="checkbox"
-          id="allStops"
-          name="allStops"
-          value="all"
-          checked={transfers.includes('all')}
-          onChange={() => dispatch(selectAllTransfers())}
-        />
-        <span className={style.filter__checkbox__span} />
-        Все
-      </label>
-      <label className={style.filter__checkbox} htmlFor="nonStop">
-        <input
-          className={style.filter__checkbox__input}
-          type="checkbox"
-          id="nonStop"
-          name="nonStop"
-          value="0"
-          checked={transfers.includes(0)}
-          onChange={() => dispatch(toggleTransfer(0))}
-        />
-        <span className={style.filter__checkbox__span} />
-        Без пересадок
-      </label>
-      <label className={style.filter__checkbox} htmlFor="oneStop">
-        <input
-          className={style.filter__checkbox__input}
-          type="checkbox"
-          id="oneStop"
-          name="oneStop"
-          value="1"
-          checked={transfers.includes(1)}
-          onChange={() => dispatch(toggleTransfer(1))}
-        />
-        <span className={style.filter__checkbox__span} />1 пересадка
-      </label>
-      <label className={style.filter__checkbox} htmlFor="twoStops">
-        <input
-          className={style.filter__checkbox__input}
-          type="checkbox"
-          id="twoStops"
-          name="twoStops"
-          value="2"
-          checked={transfers.includes(2)}
-          onChange={() => dispatch(toggleTransfer(2))}
-        />
-        <span className={style.filter__checkbox__span} />2 пересадки
-      </label>
-      <label className={style.filter__checkbox} htmlFor="threeStops">
-        <input
-          className={style.filter__checkbox__input}
-          type="checkbox"
-          id="threeStops"
-          name="threeStops"
-          value="3"
-          checked={transfers.includes(3)}
-          onChange={() => dispatch(toggleTransfer(3))}
-        />
-        <span className={style.filter__checkbox__span} />3 пересадки
-      </label>
+      {options.map((option) => (
+        <label className={style.filter__checkbox} htmlFor={option.class}>
+          <input
+            className={style.filter__checkbox__input}
+            type="checkbox"
+            id={option.class}
+            name={option.class}
+            value={option.id}
+            checked={transfers.includes(option.id)}
+            onChange={() => handleCheckboxChange(option.id)}
+          />
+          <span className={style.filter__checkbox__span} />
+          {option.label}
+        </label>
+      ))}
     </fieldset>
   )
 }
