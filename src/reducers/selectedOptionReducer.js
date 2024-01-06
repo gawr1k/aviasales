@@ -7,24 +7,16 @@ export default function selectedOptionReducer(
   action = undefined
 ) {
   switch (action.type) {
-    case 'SET_SELECTED_OPTION':
-      return {
-        ...state,
-        selectedOption: action.payload,
-      }
-
     case 'ADD_SELECTED_OPTION':
       return {
         ...state,
         selectedOption: action.payload,
       }
-
     case 'REMOVE_SELECTED_OPTION':
       return {
         ...state,
         selectedOption: [],
       }
-
     default:
       return state
   }

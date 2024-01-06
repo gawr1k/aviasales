@@ -1,9 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit'
 import thunk from 'redux-thunk'
+import { configureStore } from '@reduxjs/toolkit'
 
-import transfersReducer from './reducers/transfersReducer'
 import dataReducer from './reducers/dataReducer'
 import selectedOptionReducer from './reducers/selectedOptionReducer'
+import transfersReducer from './reducers/transfersReducer'
 
 const store = configureStore({
   reducer: {

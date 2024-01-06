@@ -26,4 +26,5 @@ class AviasalesTicketFetcher {
     return data
   }
 }
+
 export default AviasalesTicketFetcher

@@ -19,7 +19,7 @@ const dataReducer = (state = initialState, action = undefined) => {
     case 'SET_ERROR_MESSAGE':
       return {
         ...state,
-        errorMessage: action.payload,
+        errorMessage: action.payload.errorMessage,
       }
     default:
       return state

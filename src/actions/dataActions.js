@@ -5,9 +5,7 @@ const api = new AviasalesTicketFetcher()
 
 const getDataSuccess = (allTickets) => ({
   type: 'GET_DATA_SUCCESS',
-  payload: {
-    allTickets,
-  },
+  payload: { allTickets },
 })
 
 const resetLoading = () => ({
